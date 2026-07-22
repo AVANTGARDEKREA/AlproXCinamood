@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const result = await krea.subscribe("image/bytedance/seedream-5-lite", {
       input: {
         // Parameter aus Ihrer Vorlage
-        prompt: "A selfie of one or more persons depending on the input image up in the blue sky, floating among fluffy white clouds, bright sunny day, highly detailed, cinematic lighting, the logo from input logo in the background, hovering ",
+        prompt: "A selfie of one or more persons depending on the input image in a beige room, brown chocolatey swirls surrounding them, highly detailed, cinematic lighting",
         width: 1080,
         height: 1920,
         seed: 1337,
@@ -34,10 +34,6 @@ export default async function handler(req, res) {
         // WICHTIG: Die neue 'style_images'-Struktur, um das Bild zu übergeben.
         // Die dynamische URL vom Frontend wird hier eingesetzt.
         style_images: [
-             {
-        "url": "https://app-uploads.krea.ai/5c91f552-dafd-4b37-9e57-aab881291032/1784043136337-Bildschirmfoto%202026-07-14%20um%2017-26-24.png",
-        "strength": 1
-          },
           {
             "url": image, // Hier wird die dynamische Data-URI eingesetzt
             strength: 1
