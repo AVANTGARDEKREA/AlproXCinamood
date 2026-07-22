@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const result = await krea.subscribe("image/bytedance/seedream-5-lite", {
       input: {
         // Parameter aus Ihrer Vorlage
-        prompt: "A selfie of one or more persons depending on the input image in a beige room, brown barista coffee art swirls surrounding them, highly detailed, cinematic lighting",
+        prompt: "A selfie of one or more persons depending on the input image in front of a beige background, take input logo as style reference, 3d brown coffee stream curvy dynamic simple shaded blob like the swirl from input logo moving around the persons, milk blobs inbetween, coming close to the camera, highly detailed, cinematic lighting, the logo from input logo in the background with the two colored circles, hovering",
         width: 1080,
         height: 1920,
         seed: 1337,
