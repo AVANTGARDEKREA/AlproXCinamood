@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const result = await krea.subscribe("image/bytedance/seedream-5-lite", {
       input: {
         // Parameter aus Ihrer Vorlage
-        prompt: "A selfie of one or more persons depending on the input image in a beige room, brown chocolatey swirls surrounding them, highly detailed, cinematic lighting",
+        prompt: "A selfie of one or more persons depending on the input image in a beige room, brown barista coffee art swirls surrounding them, highly detailed, cinematic lighting",
         width: 1080,
         height: 1920,
         seed: 1337,
