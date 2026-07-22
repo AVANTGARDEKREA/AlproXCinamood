@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Initialize Alpro Barista Limited Edition ...",
         "Keep it rolling...",
         "Delicious Mode on ...",
-        "Almost ready ..."     
+        "Almost ready ...",     
         "Implement Cinnamon flavour ...",
         "Load deliciously realistic physics ...",
         "Roll with it ...",
