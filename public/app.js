@@ -11,11 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restart-btn');
 
     const loadingMessages = [
-        "Kontaktiere die Cloud-Geister...",
-        "Male ein paar Wolken...",
-        "Bringe die Pixel zum Schweben...",
-        "Mische Himmelblau an...",
-        "Fast fertig..."
+        "Contact the Coffee Cloud ...",
+        "Initialize Alpro Barista Limited Edition ...",
+        "Keep it rolling...",
+        "Delicious Mode on ...",
+        "Almost ready ..."     
+        "Implement Cinnamon flavour ...",
+        "Load deliciously realistic physics ...",
+        "Roll with it ...",
+        "Loading cooperation Alpro x Cinnamood ...",
+        "Almost ready ..."
     ];
     let messageInterval;
 
