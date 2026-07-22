@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CloudShot ☁️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Anzeige-Elemente -->
+        <video id="webcam" autoplay playsinline muted></video>
+        <img id="result-img" class="hidden" alt="Generiertes Bild">
+        <!-- NEU: Video-Element für das Ergebnis -->
+        <video id="result-video" class="hidden" autoplay loop muted playsinline></video>
+
+        <!-- Überlagerte UI-Elemente -->
+        <div id="overlay">
+            <div id="start-screen">
+                <img src="AVA_summerparty_2026_clean Kopie.png" id="splash-image" alt="Cloud Background Splash">
+            </div>
+             <div id="start-pos-btn">
+                <button id="start-btn" class="main-action-btn glass-btn">Create your Cloudie</button>
+            </div>
+
+            <button id="capture-btn" class="hidden"></button>
+            
+            <div id="loading-container" class="hidden">
+                <div id="loader"></div>
+                <p id="loading-text">Starte Magie...</p>
+            </div>
+            
+            <div id="result-controls" class="hidden">
+                <!-- NEU: Button zum Erstellen des Videos -->
+                <a id="share-btn" class="result-btn glass-btn" href="https://instagram.com" target="_blank">Teilen</a>
+                <button id="restart-btn" class="result-btn glass-btn">Neues Selfie</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
