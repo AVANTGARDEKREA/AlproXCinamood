@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startCameraAndShowView = async () => {
         startScreen.classList.add('hidden'); // Wichtig: Blendet den Startbildschirm aus
         webcam.classList.remove('hidden');
+        startBtn.classList.add('hidden');
         captureBtn.classList.remove('hidden');
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
