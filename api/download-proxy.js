@@ -1,22 +1,10 @@
-// Ersetzen Sie den bestehenden 'downloadBtn' Event-Listener
+// In /api/download-proxy.js
 
-downloadBtn.addEventListener('click', (event) => {
-    event.preventDefault(); // Verhindert, dass der Link normal navigiert
+// 1. Das Bild wird in den Arbeitsspeicher des Servers geladen (nicht auf die Festplatte)
+const imageBuffer = await imageResponse.buffer();
 
-    const imageUrl = resultImg.src;
-    if (!imageUrl || imageUrl.startsWith('data:')) {
-        alert("Es gibt noch kein generiertes Bild zum Herunterladen.");
-        return;
-    }
-    
-    // --- NEUE, ROBUSTE DOWNLOAD-LOGIK ---
-    // Wir erstellen eine URL zu unserem eigenen Backend-Proxy
-    // und übergeben die Krea-Bild-URL als Parameter.
-    const downloadUrl = `/api/download-proxy?url=${encodeURIComponent(imageUrl)}`;
-    
-    // Wir öffnen diese URL. Der Browser wird den Download automatisch starten,
-    // da unser Backend die richtigen "Content-Disposition"-Header sendet.
-    window.open(downloadUrl, '_blank');
-});
-
-// Der Rest Ihrer app.js-Datei bleibt unverändert.
+// 2. Die Daten werden direkt an den Browser des Nutzers "gestreamt"
+//    mit Anweisungen, den Download zu starten.
+res.setHeader('Content-Type', 'image/png');
+res.setHeader('Content-Disposition', 'attachment; filename="My-Cloudie.png"');
+res.send(imageBuffer);
