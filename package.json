@@ -1,5 +1,5 @@
 {
-  "name": "cloudshot-app-final",
+  "name": "Alpro X Cinamood",
   "version": "1.0.0",
   "description": "A web app to create sky selfies using the Krea AI.",
   "type": "module",
@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "@krea-ai/sdk": "latest",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2" 
   }
 }
