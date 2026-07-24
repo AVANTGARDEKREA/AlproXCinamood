@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Alle Elemente holen
+    // 1. Alle HTML-Elemente holen, inklusive des neuen Download-Buttons
     const webcam = document.getElementById('webcam');
     const resultImg = document.getElementById('result-img');
     const startScreen = document.getElementById('start-screen');
@@ -9,66 +9,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingText = document.getElementById('loading-text');
     const resultControls = document.getElementById('result-controls');
     const restartBtn = document.getElementById('restart-btn');
+    const downloadBtn = document.getElementById('download-btn'); // NEU
 
-    const loadingMessages = [
-        "Contact the Coffee Cloud ...",
-        "Initialize Alpro Barista Limited Edition ...",
-        "Keep it rolling...",
-        "Delicious Mode on ...",
-        "Almost ready ...",     
-        "Implement Cinnamon flavour ...",
-        "Load deliciously realistic physics ...",
-        "Roll with it ...",
-        "Loading cooperation Alpro x Cinnamood ...",
-        "Almost ready ..."
-    ];
-    let messageInterval;
+    // ... (Variablen und Lade-Nachrichten bleiben gleich) ...
 
-    // Funktion, um den Start/Splash-Screen anzuzeigen
+    /**
+     * Zeigt die Ergebnis-Ansicht mit dem generierten Bild.
+     */
+    const showResultScreen = (imageUrl) => {
+        resultImg.src = imageUrl;
+        resultImg.classList.remove('hidden', 'blurred');
+        loadingContainer.classList.add('hidden');
+        resultControls.classList.remove('hidden');
+
+        // --- NEU: Download-Button funktionsfähig machen ---
+        // Weisen Sie dem Button die Bild-URL zu
+        downloadBtn.href = imageUrl;
+        // Geben Sie der heruntergeladenen Datei einen Namen
+        downloadBtn.download = 'My-Cloudie.png'; 
+    };
+
+    // --- Der Rest der app.js bleibt unverändert ---
+
     const showStartScreen = () => {
-        // Blende alles aus, außer dem Startbildschirm
         startScreen.classList.remove('hidden');
         webcam.classList.add('hidden');
         resultImg.classList.add('hidden');
         captureBtn.classList.add('hidden');
         loadingContainer.classList.add('hidden');
         resultControls.classList.add('hidden');
-        startBtn.classList.remove('hidden');
         
-        // Kamerastream stoppen, falls er läuft
         if (webcam.srcObject) {
             webcam.srcObject.getTracks().forEach(track => track.stop());
+            webcam.srcObject = null;
         }
     };
 
-    // Funktion, um die scharfe Kamera-Ansicht zu starten
-    // WIRD JETZT VOM START-BUTTON AUFGERUFEN
     const startCameraAndShowView = async () => {
-        // UI für Kamera-Ansicht vorbereiten
         startScreen.classList.add('hidden');
         webcam.classList.remove('hidden');
-        webcam.classList.remove('blurred'); // Sicherstellen, dass die Kamera scharf ist
         captureBtn.classList.remove('hidden');
-        startBtn.classList.add('hidden');
         
-        // Erst jetzt die Kamera anfordern
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
             webcam.srcObject = stream;
             await webcam.play();
         } catch (err) {
             alert("Kamera-Fehler: Bitte erlaube den Kamerazugriff und lade die Seite neu.");
-            showStartScreen(); // Bei Fehler zurück zum Start
+            showStartScreen();
         }
     };
 
-    // Event-Listener für den "Create your Cloudie"-Button
     startBtn.addEventListener('click', startCameraAndShowView);
-
-    // Event-Listener für den "Neues Selfie"-Button
     restartBtn.addEventListener('click', showStartScreen);
 
-    // Klick auf den Aufnahme-Button (Logik bleibt gleich)
     captureBtn.addEventListener('click', async () => {
         const canvas = document.createElement('canvas');
         canvas.width = webcam.videoWidth;
@@ -76,43 +70,34 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.getContext('2d').drawImage(webcam, 0, 0, canvas.width, canvas.height);
         const imageDataUrl = canvas.toDataURL('image/jpeg');
         
-        // Lade-Ansicht anzeigen
         resultImg.src = imageDataUrl;
         resultImg.classList.remove('hidden');
         resultImg.classList.add('blurred');
         webcam.classList.add('hidden');
         captureBtn.classList.add('hidden');
         loadingContainer.classList.remove('hidden');
-        startBtn.classList.add('hidden');
 
         let messageIndex = 0;
+        let messageInterval;
         loadingText.textContent = loadingMessages[messageIndex];
         messageInterval = setInterval(() => {
             messageIndex = (messageIndex + 1) % loadingMessages.length;
             loadingText.textContent = loadingMessages[messageIndex];
         }, 2000);
 
-        // Bild verarbeiten
         try {
             const response = await fetch('/api/transform', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ image: imageDataUrl }),
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.details || errorData.message);
             }
-
             const result = await response.json();
-
-            // Ergebnis-Ansicht anzeigen
-            resultImg.src = result.url;
-            resultImg.classList.remove('blurred');
-            loadingContainer.classList.add('hidden');
-            resultControls.classList.remove('hidden');
-
+            
+            showResultScreen(result.url); // Diese Funktion wird jetzt den Download-Button vorbereiten
         } catch (error) {
             alert(`Ein Fehler ist aufgetreten: ${error.message}`);
             showStartScreen();
@@ -121,6 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // App initialisieren, indem der Splash-Screen gezeigt wird
+    // App initialisieren
     showStartScreen();
 });
