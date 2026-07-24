@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingText = document.getElementById('loading-text');
     const resultControls = document.getElementById('result-controls');
     const restartBtn = document.getElementById('restart-btn');
-    const downloadBtn = document.getElementById('download-btn');
+    //const downloadBtn = document.getElementById('download-btn');
 
     let isLoading = false; // Verhindert Doppelklicks
     let messageInterval;
@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showStartScreen();
         startBtn.classList.remove('hidden');
     });
-    
+
+    /*
     downloadBtn.addEventListener('click', (event) => {
         event.preventDefault();
         const imageUrl = resultImg.src;
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const downloadUrl = `/api/download-proxy?url=${encodeURIComponent(imageUrl)}`;
         window.open(downloadUrl, '_blank');
     });
+    */
 
     captureBtn.addEventListener('click', async () => {
         if (isLoading) return;
