@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     restartBtn.addEventListener('click', () => {
         if (isLoading) return;
         showStartScreen();
+        startBtn.classList.remove('hidden');
     });
     
     downloadBtn.addEventListener('click', (event) => {
