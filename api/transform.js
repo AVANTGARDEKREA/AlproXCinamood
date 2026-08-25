@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const result = await krea.subscribe("image/bytedance/seedream-5-lite", {
       input: {
         // Parameter aus Ihrer Vorlage
-        prompt: "A selfie of one or more persons depending on the input image in front of a beige background, take input logo as style reference, 3d brown coffee stream curvy dynamic simple shaded blob like the swirl from input logo moving around the persons, milk blobs inbetween, coming close to the camera, highly detailed, cinematic lighting, the logo from input logo in the background with the two colored circles, keep exactly to the logo and the color #4e2d2b hovering",
+        prompt: "A selfie of one or more persons depending on the input image in front of a beige background, take input logo as style reference, 3d brown coffee stream curvy dynamic simple shaded blob like the swirl from input logo moving around the persons, milk blobs inbetween, coming close to the camera, highly detailed, cinematic lighting, the logo from input logo and an orange circle with the same texture from input logo in the background with the two colored circles, keep exactly to the logo and the color #4e2d2b hovering",
         width: 1080,
         height: 1920,
         seed: 1337,
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         // WICHTIG: Die neue 'style_images'-Struktur, um das Bild zu übergeben.
         // Die dynamische URL vom Frontend wird hier eingesetzt.
         style_images: [   {
-        "url": "https://app-uploads.krea.ai/5c91f552-dafd-4b37-9e57-aab881291032/1784715139925-logo.png",
+        "url": "https://app-uploads.krea.ai/5c91f552-dafd-4b37-9e57-aab881291032/1787647376248-Bildschirmfoto%202026-08-25%20um%2010-41-58.png",
         "strength": 1
       },
           {
