@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         // WICHTIG: Die neue 'style_images'-Struktur, um das Bild zu übergeben.
         // Die dynamische URL vom Frontend wird hier eingesetzt.
         style_images: [   {
-        "url": "https://app-uploads.krea.ai/5c91f552-dafd-4b37-9e57-aab881291032/1787647376248-Bildschirmfoto%202026-08-25%20um%2010-41-58.png",
+        "url": "https://app-uploads.krea.ai/5c91f552-dafd-4b37-9e57-aab881291032/1787648166019-Bildschirmfoto%202026-08-25%20um%2010-55-39.png",
         "strength": 1
       },
           {
